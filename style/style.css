@@ -1,0 +1,134 @@
+body {
+    font-family: sans-serif;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+
+.header {
+    padding: 5px 10px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.liked-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.liked-images span {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3e3e3e;
+}
+
+#search {
+    outline-offset: 1px;
+    outline-color: aqua;
+    outline-style: var(#f0f0f0);
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.img-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.img-box {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.356);
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+    color: #333;
+}
+
+
+.best-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.best-img:hover {
+    transform: scale(1.05);
+}
+
+.modal-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.like-btn {
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal p {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
