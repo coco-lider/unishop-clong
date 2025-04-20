@@ -4,8 +4,18 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     padding: 20px;
+    font-family: sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.active{
+    color: rgba(255, 0, 0, 0.664);
 }
 
 .container {
@@ -13,14 +23,6 @@ body{
     width: 100%;
     margin: auto;
     padding: 20px;
-}
-
-.like-btn {
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
 }
 
 .title {
@@ -34,17 +36,6 @@ body{
     gap: 20px;
 }
 
-.best-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: all 0.3s;
-}
-
-.best-img:hover {
-    transform: scale(1.05);
-}
-
 .img-box {
     position: relative;
     display: inline-block;
@@ -56,68 +47,191 @@ body{
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.356);
 }
 
+.best-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.best-img:hover {
+    transform: scale(1.05);
+}
+
 .like-btn {
     position: absolute;
-    z-index: 1000;
+    z-index: 10;
     right: 0;
     bottom: 0;
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-}
-
-.active {
-    color: rgba(255, 10, 10, 0.662);
-}
-
-.modal-back {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-}
-
-.modal-img {
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-.like-btn {
-    margin-top: 10px;
+    margin-bottom: 8px;
+    margin-right: 8px;
     font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    background: linear-gradient(135deg, #ffffff, #d2d2d2);
+    color: white;
+    border-radius: 50%;
 }
 
-.loading-overlay {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
+.modal-back {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    position: relative;
+    animation: scaleIn 0.4s ease;
+    overflow: hidden;
+}
+
+.modal-back.closing {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.modal.closing {
+    animation: zoomOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomOut {
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+.modal-img {
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    color: #000;
+    max-width: 350px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.modal p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.modal-btn {
+    font-size: 20px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.modal-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #0088cc);
+    transform: scale(1.05);
+}
+
+.exit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    color: #888;
+    background: #f0f0f0;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.exit:hover {
+    background: #ddd;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.modal-close {
+    animation: fadeOut 0.3s ease forwards;
 }
