@@ -42,7 +42,7 @@ a {
     align-items: center;
 }
 
-.liked-images span {
+.liked-images .like-title {
     font-size: 16px;
     font-weight: 600;
     color: #444;
